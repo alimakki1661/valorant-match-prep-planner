@@ -19,10 +19,13 @@ The production build is written to `dist`, which is the publish directory for Ne
 
 ## Project plan
 
-- Select Haven, Ascent, or Sunset.
+Current features:
+
+- Select Haven, Ascent, or Sunset and see the map update in the live plan.
 - Browse eight agents across all four roles. Agent picks are not restricted by map.
-- Search and filter the agent list.
-- Read personal map and role tips, then add a match goal and personal notes.
-- Review the choices together in the live plan.
+- Search agents by name and filter the list by role.
+- Select an agent and see that choice in the live plan.
+
+Next, the planner will show personal map and role tips and let the user add a match goal and notes.
 
 The planner is being built in stages so each part can be understood and reviewed before the next is added.

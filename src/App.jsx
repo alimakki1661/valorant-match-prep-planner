@@ -1,12 +1,25 @@
 import { useState } from 'react'
+import { agents } from './data/agents.js'
+import { AgentList } from './components/AgentList.jsx'
+import { AgentSearch } from './components/AgentSearch.jsx'
 import { MapSelector } from './components/MapSelector.jsx'
 import { MatchPlan } from './components/MatchPlan.jsx'
+import { RoleFilter } from './components/RoleFilter.jsx'
 import './App.css'
 
 const maps = ['Haven', 'Ascent', 'Sunset']
 
 function App() {
   const [selectedMap, setSelectedMap] = useState('Haven')
+  const [searchText, setSearchText] = useState('')
+  const [selectedRole, setSelectedRole] = useState('All roles')
+  const [selectedAgent, setSelectedAgent] = useState(null)
+
+  const visibleAgents = agents.filter((agent) => {
+    const matchesSearch = agent.name.toLowerCase().includes(searchText.toLowerCase())
+    const matchesRole = selectedRole === 'All roles' || agent.role === selectedRole
+    return matchesSearch && matchesRole
+  })
 
   return (
     <div className="app-shell">
@@ -42,16 +55,25 @@ function App() {
               selectedMap={selectedMap}
               onSelectMap={setSelectedMap}
             />
-            <div className="agent-placeholder">
-              <span className="step-number">02</span>
-              <div>
-                <h2>Choose your agent</h2>
-                <p>The agent browser comes next.</p>
+            <div className="agent-browser" aria-labelledby="agent-title">
+              <div className="section-heading agent-heading">
+                <span className="step-number">02</span>
+                <div>
+                  <h2 id="agent-title">Choose your agent</h2>
+                  <p>Every pick is open on every map.</p>
+                </div>
               </div>
+              <AgentSearch searchText={searchText} onSearchChange={setSearchText} />
+              <RoleFilter selectedRole={selectedRole} onRoleChange={setSelectedRole} />
+              <AgentList
+                agents={visibleAgents}
+                selectedAgent={selectedAgent}
+                onSelectAgent={setSelectedAgent}
+              />
             </div>
           </section>
 
-          <MatchPlan selectedMap={selectedMap} />
+          <MatchPlan selectedMap={selectedMap} selectedAgent={selectedAgent} />
         </div>
       </main>
 
