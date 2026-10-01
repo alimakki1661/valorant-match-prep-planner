@@ -31,6 +31,8 @@ The production build is written to `dist`.
 
 ## Deploy to Netlify
 
+Live site: [valorant-match-prep-planner.netlify.app](https://valorant-match-prep-planner.netlify.app)
+
 The repository includes these settings in `netlify.toml`:
 
 - Build command: `npm run build`
