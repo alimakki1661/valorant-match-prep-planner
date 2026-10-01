@@ -11,7 +11,6 @@ export function MapSelector({ maps, selectedMap, onSelectMap }) {
         >
           <span className="map-option-index">{String(maps.indexOf(map) + 1).padStart(2, '0')}</span>
           <span>{map}</span>
-          <span className="map-option-arrow" aria-hidden="true">↗</span>
         </button>
       ))}
     </div>

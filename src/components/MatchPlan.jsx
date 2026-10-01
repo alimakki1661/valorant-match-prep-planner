@@ -7,7 +7,6 @@ export function MatchPlan({ selectedMap, selectedRole, phase, onPhaseChange, mat
     <aside className="plan-panel" aria-labelledby="plan-title">
       <div className="plan-topline">
         <span className="eyebrow">LIVE MATCH PLAN</span>
-        <span className="plan-status"><span aria-hidden="true" /> IN PROGRESS</span>
       </div>
       <div className="plan-map-art" aria-hidden="true">
         <span className="map-ghost">{selectedMap.slice(0, 1)}</span>

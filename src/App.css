@@ -29,7 +29,6 @@
 .map-option.is-selected { border-color: #ff4655; background: rgba(255, 70, 85, 0.11); }
 .map-option-index { color: #77828b; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; }
 .map-option > span:nth-child(2) { font-size: 0.9rem; font-weight: 700; }
-.map-option-arrow { display: none; }
 .role-browser { padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.1); }
 .role-heading { margin-bottom: 1.15rem; }
 .role-selector { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; }
@@ -63,9 +62,7 @@
 .plan-review-item { margin-top: 0.7rem; }
 .plan-review-copy { margin: 0.3rem 0 0; color: #d3d7d9; font-size: 0.73rem; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; }
 .plan-panel { display: flex; min-height: 325px; flex-direction: column; }
-.plan-topline { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 1.4rem; }
-.plan-status { display: inline-flex; align-items: center; gap: 0.4rem; color: #adb5bb; font-size: 0.57rem; font-weight: 700; letter-spacing: 0.1em; }
-.plan-status > span { width: 0.4rem; height: 0.4rem; border-radius: 50%; background: #86d6ac; }
+.plan-topline { padding: 1.25rem 1.4rem; }
 .plan-map-art { position: relative; display: grid; min-height: 125px; place-items: center; overflow: hidden; background: linear-gradient(135deg, transparent 49.7%, rgba(255, 255, 255, 0.08) 50%, transparent 50.3%), linear-gradient(45deg, transparent 49.7%, rgba(255, 255, 255, 0.06) 50%, transparent 50.3%), #202934; }
 .map-ghost { color: rgba(255, 255, 255, 0.06); font-size: 7.5rem; font-weight: 900; line-height: 1; }
 .map-coordinate { position: absolute; right: 1rem; bottom: 0.8rem; color: rgba(255, 255, 255, 0.55); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.15em; }
