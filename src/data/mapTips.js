@@ -10,7 +10,7 @@ export const mapTips = {
     },
     Initiator: {
       defense: 'Use a dart to help your team flood a retake. If the enemies have made no noise, a drone can clear a specific area such as Mid. Ascent has many cheeky corners, so information helps your team avoid getting caught off guard.',
-      attack: 'Use your information and clearing utility to help your team take space and check corners before entering. Ascent has many hiding spots, so clear the areas that could catch your team during the hit.',
+      attack: 'Always throw a dart onto the site your team plans to hit. Use your information and clearing utility to help your team take space and check corners before entering. Ascent has many hiding spots, so clear the areas that could catch your team during the hit.',
     },
     Controller: {
       defense: 'I recommend playing Tree or Market, usually Tree, and throwing a one-way on A Main.',
