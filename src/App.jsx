@@ -36,7 +36,6 @@ function loadSavedPlan() {
           }
         }
       }
-    } else if (selectedRole && (saved.matchGoal || saved.personalNotes)) {
       draftsByPlan[`${selectedMap}::${selectedRole}`] = {
         matchGoal: typeof saved.matchGoal === 'string' ? saved.matchGoal.slice(0, 90) : '',
         personalNotes: typeof saved.personalNotes === 'string' ? saved.personalNotes.slice(0, 500) : '',
