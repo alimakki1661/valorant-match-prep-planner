@@ -1,6 +1,7 @@
 import { MapTips } from './MapTips.jsx'
 
-export function MatchPlan({ selectedMap, selectedAgent, children }) {
+export function MatchPlan({ selectedMap, selectedRole, children }) {
+  const roleLabel = selectedRole === 'Controller' ? 'Smokes' : selectedRole
   return (
     <aside className="plan-panel" aria-labelledby="plan-title">
       <div className="plan-topline">
@@ -15,25 +16,22 @@ export function MatchPlan({ selectedMap, selectedAgent, children }) {
         <p className="eyebrow">CURRENT MAP</p>
         <h2 id="plan-title">{selectedMap}</h2>
         <div className="plan-divider" />
-        {selectedAgent ? (
+        {selectedRole ? (
           <>
-            <div className="selected-agent-summary">
-              <div className={`agent-avatar ${selectedAgent.roleClass}`} aria-hidden="true">
-                {selectedAgent.initials}
-              </div>
+            <div className="selected-role-summary">
               <div>
-                <p className="eyebrow">YOUR AGENT · {selectedAgent.role.toUpperCase()}</p>
-                <h3>{selectedAgent.name}</h3>
+                <p className="eyebrow">YOUR ROLE</p>
+                <h3>{roleLabel}</h3>
               </div>
             </div>
-            <MapTips selectedMap={selectedMap} selectedAgent={selectedAgent} />
+            <MapTips selectedMap={selectedMap} selectedRole={selectedRole} />
           </>
         ) : (
           <>
-            <p className="empty-plan">Your agent, map tips, and match notes will come together here.</p>
+            <p className="empty-plan">Choose a role to see its advice for this map.</p>
             <div className="plan-empty-row">
               <span className="empty-icon" aria-hidden="true">+</span>
-              <span>Agent not selected yet</span>
+              <span>Role not selected yet</span>
             </div>
           </>
         )}

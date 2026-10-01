@@ -3,10 +3,10 @@ import { mapTips } from '../data/mapTips.js'
 
 const phases = ['Defense', 'Attack']
 
-export function MapTips({ selectedMap, selectedAgent }) {
+export function MapTips({ selectedMap, selectedRole }) {
   const [phase, setPhase] = useState('Defense')
-  const roleTips = mapTips[selectedMap]?.[selectedAgent.role]
-  const roleLabel = selectedAgent.role === 'Controller' ? 'Smokes' : selectedAgent.role
+  const roleTips = mapTips[selectedMap]?.[selectedRole]
+  const roleLabel = selectedRole === 'Controller' ? 'Smokes' : selectedRole
 
   return (
     <section className="map-tips" aria-labelledby="tips-title">
@@ -31,7 +31,7 @@ export function MapTips({ selectedMap, selectedAgent }) {
       </div>
       <p className="tip-copy">{roleTips?.[phase.toLowerCase()]}</p>
       <p className="tip-context">
-        Advice for {selectedAgent.name} on {selectedMap}. Your agent pick is never restricted by the map.
+        Role-based advice for {roleLabel} on {selectedMap}. Use it with any agent in this role.
       </p>
     </section>
   )

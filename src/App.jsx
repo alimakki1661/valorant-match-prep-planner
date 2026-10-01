@@ -1,28 +1,18 @@
 import { useState } from 'react'
-import { agents } from './data/agents.js'
-import { AgentList } from './components/AgentList.jsx'
-import { AgentSearch } from './components/AgentSearch.jsx'
+import { roleOptions } from './data/roles.js'
 import { MapSelector } from './components/MapSelector.jsx'
 import { MatchPlan } from './components/MatchPlan.jsx'
 import { MatchNotes } from './components/MatchNotes.jsx'
-import { RoleFilter } from './components/RoleFilter.jsx'
+import { RoleSelector } from './components/RoleSelector.jsx'
 import './App.css'
 
 const maps = ['Haven', 'Ascent', 'Sunset']
 
 function App() {
   const [selectedMap, setSelectedMap] = useState('Haven')
-  const [searchText, setSearchText] = useState('')
-  const [selectedRole, setSelectedRole] = useState('All roles')
-  const [selectedAgent, setSelectedAgent] = useState(null)
+  const [selectedRole, setSelectedRole] = useState(null)
   const [matchGoal, setMatchGoal] = useState('')
   const [personalNotes, setPersonalNotes] = useState('')
-
-  const visibleAgents = agents.filter((agent) => {
-    const matchesSearch = agent.name.toLowerCase().includes(searchText.toLowerCase())
-    const matchesRole = selectedRole === 'All roles' || agent.role === selectedRole
-    return matchesSearch && matchesRole
-  })
 
   return (
     <div className="app-shell">
@@ -39,8 +29,8 @@ function App() {
           <p className="eyebrow">YOUR MAP. YOUR READ. YOUR PLAN.</p>
           <h1 id="page-title">Prepare for the round<br /><span>before it begins.</span></h1>
           <p className="intro-copy">
-            Choose a map and agent, then build a plan around how you want to play.
-            Every agent is available on every map.
+            Choose a map and role, then build a plan around how you want to play.
+            Your advice is organized by role and works with any agent in that role.
           </p>
         </section>
 
@@ -58,25 +48,23 @@ function App() {
               selectedMap={selectedMap}
               onSelectMap={setSelectedMap}
             />
-            <section className="agent-browser" aria-labelledby="agent-title">
-              <div className="section-heading agent-heading">
+            <section className="role-browser" aria-labelledby="role-title">
+              <div className="section-heading role-heading">
                 <span className="step-number">02</span>
                 <div>
-                  <h2 id="agent-title">Choose your agent</h2>
-                  <p>Every pick is open on every map.</p>
+                  <h2 id="role-title">Choose your role</h2>
+                  <p>Pick the role you plan to play.</p>
                 </div>
               </div>
-              <AgentSearch searchText={searchText} onSearchChange={setSearchText} />
-              <RoleFilter selectedRole={selectedRole} onRoleChange={setSelectedRole} />
-              <AgentList
-                agents={visibleAgents}
-                selectedAgent={selectedAgent}
-                onSelectAgent={setSelectedAgent}
+              <RoleSelector
+                roles={roleOptions}
+                selectedRole={selectedRole}
+                onSelectRole={setSelectedRole}
               />
             </section>
           </section>
 
-          <MatchPlan selectedMap={selectedMap} selectedAgent={selectedAgent}>
+          <MatchPlan selectedMap={selectedMap} selectedRole={selectedRole}>
             <MatchNotes
               matchGoal={matchGoal}
               onGoalChange={setMatchGoal}

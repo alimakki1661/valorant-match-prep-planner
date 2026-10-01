@@ -1,7 +1,7 @@
 export const mapTips = {
   Ascent: {
     Sentinel: {
-      defense: 'I usually play B on defense because it is easier to set up. Your Duelists can ask your Smokes player for an A one-way and fight for A Main or play close. On Cypher, I usually put one trip mid to catch a Market lurk unless a teammate is already holding there.',
+      defense: 'I usually play B on defense because it is easier to set up. Your Duelists can ask your Smokes player for an A one-way and fight for A Main or play close. If you are playing Cypher, I usually put one trip mid to catch a Market lurk unless a teammate is already holding there.',
       attack: 'A lurk can pressure defenders and pull players away from the site your team plans to hit. I like walking up Cat while the team hits A Main, or taking B Main space while the team gets ready to hit A. Time your pressure with the team’s execute.',
     },
     Duelist: {
