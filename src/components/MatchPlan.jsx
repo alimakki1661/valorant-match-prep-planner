@@ -1,4 +1,6 @@
-export function MatchPlan({ selectedMap, selectedAgent }) {
+import { MapTips } from './MapTips.jsx'
+
+export function MatchPlan({ selectedMap, selectedAgent, children }) {
   return (
     <aside className="plan-panel" aria-labelledby="plan-title">
       <div className="plan-topline">
@@ -14,15 +16,18 @@ export function MatchPlan({ selectedMap, selectedAgent }) {
         <h2 id="plan-title">{selectedMap}</h2>
         <div className="plan-divider" />
         {selectedAgent ? (
-          <div className="selected-agent-summary">
-            <div className={`agent-avatar ${selectedAgent.roleClass}`} aria-hidden="true">
-              {selectedAgent.initials}
+          <>
+            <div className="selected-agent-summary">
+              <div className={`agent-avatar ${selectedAgent.roleClass}`} aria-hidden="true">
+                {selectedAgent.initials}
+              </div>
+              <div>
+                <p className="eyebrow">YOUR AGENT · {selectedAgent.role.toUpperCase()}</p>
+                <h3>{selectedAgent.name}</h3>
+              </div>
             </div>
-            <div>
-              <p className="eyebrow">YOUR AGENT · {selectedAgent.role.toUpperCase()}</p>
-              <h3>{selectedAgent.name}</h3>
-            </div>
-          </div>
+            <MapTips selectedMap={selectedMap} selectedAgent={selectedAgent} />
+          </>
         ) : (
           <>
             <p className="empty-plan">Your agent, map tips, and match notes will come together here.</p>
@@ -32,6 +37,7 @@ export function MatchPlan({ selectedMap, selectedAgent }) {
             </div>
           </>
         )}
+        {children}
       </div>
     </aside>
   )

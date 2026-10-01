@@ -25,7 +25,9 @@ Current features:
 - Browse eight agents across all four roles. Agent picks are not restricted by map.
 - Search agents by name and filter the list by role.
 - Select an agent and see that choice in the live plan.
+- Read your map and role advice for attack or defense.
+- Write a match goal and personal notes in controlled inputs.
 
-Next, the planner will show personal map and role tips and let the user add a match goal and notes.
+Next, the planner will get its final accessibility, responsive-layout, and deployment review.
 
 The planner is being built in stages so each part can be understood and reviewed before the next is added.
