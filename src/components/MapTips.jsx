@@ -1,10 +1,8 @@
 import { mapTips } from '../data/mapTips.js'
+import { phases } from '../data/phases.js'
 
-const phases = ['Defense', 'Attack']
-
-export function MapTips({ selectedMap, selectedRole, phase, onPhaseChange }) {
+export function MapTips({ selectedMap, selectedRole, roleLabel, phase, onPhaseChange }) {
   const roleTips = mapTips[selectedMap]?.[selectedRole]
-  const roleLabel = selectedRole === 'Controller' ? 'Smokes' : selectedRole
 
   return (
     <section className="map-tips" aria-labelledby="tips-title">

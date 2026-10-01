@@ -1,8 +1,7 @@
 import { MapTips } from './MapTips.jsx'
 import { PlanSummary } from './PlanSummary.jsx'
 
-export function MatchPlan({ selectedMap, selectedRole, phase, onPhaseChange, matchGoal, personalNotes }) {
-  const roleLabel = selectedRole === 'Controller' ? 'Smokes' : selectedRole
+export function MatchPlan({ selectedMap, selectedRole, roleLabel, phase, onPhaseChange, matchGoal, personalNotes }) {
   return (
     <aside className="plan-panel" aria-labelledby="plan-title">
       <div className="plan-topline">
@@ -27,6 +26,7 @@ export function MatchPlan({ selectedMap, selectedRole, phase, onPhaseChange, mat
             <MapTips
               selectedMap={selectedMap}
               selectedRole={selectedRole}
+              roleLabel={roleLabel}
               phase={phase}
               onPhaseChange={onPhaseChange}
             />

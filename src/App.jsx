@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { roleOptions } from './data/roles.js'
+import { phases } from './data/phases.js'
 import { MapSelector } from './components/MapSelector.jsx'
 import { MatchPlan } from './components/MatchPlan.jsx'
 import { MatchNotes } from './components/MatchNotes.jsx'
@@ -7,7 +8,6 @@ import { RoleSelector } from './components/RoleSelector.jsx'
 import './App.css'
 
 const maps = ['Haven', 'Ascent', 'Sunset']
-const phases = ['Defense', 'Attack']
 const storageKey = 'match-point-plan'
 
 function loadSavedPlan() {
@@ -15,7 +15,7 @@ function loadSavedPlan() {
     selectedMap: 'Haven',
     selectedRole: null,
     draftsByPlan: {},
-    phase: 'Defense',
+    phase: phases[0],
   }
 
   try {
@@ -64,7 +64,7 @@ function App() {
   const currentDraft = currentPlanKey
     ? draftsByPlan[currentPlanKey] ?? { matchGoal: '', personalNotes: '' }
     : { matchGoal: '', personalNotes: '' }
-  const roleLabel = selectedRole === 'Controller' ? 'Smokes' : selectedRole
+  const roleLabel = roleOptions.find((role) => role.key === selectedRole)?.label
 
   function updateCurrentDraft(field, value) {
     if (!currentPlanKey) return
@@ -151,6 +151,7 @@ function App() {
           <MatchPlan
             selectedMap={selectedMap}
             selectedRole={selectedRole}
+            roleLabel={roleLabel}
             phase={phase}
             onPhaseChange={setPhase}
             matchGoal={currentDraft.matchGoal}
