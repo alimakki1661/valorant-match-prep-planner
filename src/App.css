@@ -58,8 +58,9 @@
 .note-field input:focus-visible, .note-field textarea:focus-visible { outline: 2px solid #ff6470; outline-offset: 2px; border-color: transparent; }
 .character-count { align-self: flex-end; color: #77828b; font-size: 0.58rem; font-weight: 500; }
 .plan-review { margin-top: 1rem; padding: 0.85rem; border-left: 2px solid #ff4655; background: rgba(255, 255, 255, 0.03); }
-.plan-review-label { margin: 0; color: #ff6470; font-size: 0.58rem; font-weight: 800; letter-spacing: 0.13em; }
-.plan-review p:last-child { margin: 0.35rem 0 0; color: #d3d7d9; font-size: 0.73rem; line-height: 1.5; white-space: pre-wrap; }
+.plan-review-label, .plan-review-item-label { margin: 0; color: #ff6470; font-size: 0.58rem; font-weight: 800; letter-spacing: 0.13em; }
+.plan-review-item { margin-top: 0.7rem; }
+.plan-review-copy { margin: 0.3rem 0 0; color: #d3d7d9; font-size: 0.73rem; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; }
 .plan-panel { display: flex; min-height: 325px; flex-direction: column; }
 .plan-topline { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 1.4rem; }
 .plan-status { display: inline-flex; align-items: center; gap: 0.4rem; color: #adb5bb; font-size: 0.57rem; font-weight: 700; letter-spacing: 0.1em; }

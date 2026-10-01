@@ -62,16 +62,20 @@ function App() {
                 onSelectRole={setSelectedRole}
               />
             </section>
-          </section>
-
-          <MatchPlan selectedMap={selectedMap} selectedRole={selectedRole}>
             <MatchNotes
               matchGoal={matchGoal}
               onGoalChange={setMatchGoal}
               personalNotes={personalNotes}
               onNotesChange={setPersonalNotes}
             />
-          </MatchPlan>
+          </section>
+
+          <MatchPlan
+            selectedMap={selectedMap}
+            selectedRole={selectedRole}
+            matchGoal={matchGoal}
+            personalNotes={personalNotes}
+          />
         </div>
       </main>
 

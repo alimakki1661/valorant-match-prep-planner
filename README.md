@@ -7,7 +7,7 @@ Match Point is a VALORANT match prep planner built with React and Vite. Choose a
 - Choose Haven, Ascent, or Sunset.
 - Choose Duelist, Initiator, Smokes (Controller), or Sentinel.
 - Read attack and defense advice for each map and role.
-- Write a match goal and personal notes in controlled inputs.
+- Write a match goal and personal notes in controlled inputs and see them appear in the live plan.
 - Switch the selected map or role and see the plan update immediately.
 
 The map advice is based on Ali's gameplay notes.
