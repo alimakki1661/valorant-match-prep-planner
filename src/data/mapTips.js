@@ -27,7 +27,7 @@ export const mapTips = {
       attack: 'Wait for your Initiators’ utility, then dive onto site so your team can follow. Taking site is often manageable; focus on preventing a flood and retake with good spacing and utility.',
     },
     Initiator: {
-      defense: 'I usually want the Initiator on A to dart A Lobby or throw an eye for early information. Initiator ultimates can also help a lot during retakes.',
+      defense: 'I usually want the Initiator on A to dart A Lobby or throw an eye for early information. If the enemies have made no noise and your team has no information, drone Mid or throw an eye Mid to scout. Initiator ultimates can also help a lot during retakes.',
       attack: 'Use your scan on Long or site, depending on what your team prefers. Clear Short with a drone or dog so your team can take space without getting caught by an immediate swing.',
     },
     Controller: {
@@ -38,7 +38,7 @@ export const mapTips = {
   Sunset: {
     Duelist: {
       defense: 'I think the Duelist role can be even more important than Sentinel on this map because you need to fight for A Main space. If your team keeps losing that fight or cannot hold A, defense gets very difficult. On Neon, start on the right side at Short/Link and stun off the wall to cover the area; you can also wait for noise, but have the stun ready. On Phoenix, play Elbow and flash off timing or noise.',
-      attack: 'Help your team take A Main so defenders have to give up that space. Use Mid to pressure Market too; letting opponents take Market is dangerous. Phoenix flashes and Neon’s slide or stun can help you take that space.',
+      attack: 'Help your team take A Main so defenders have to give up that space. Use Mid to pressure Market too; letting you take Market can be dangerous for the opponents. Phoenix flashes and Neon’s slide or stun can help you take that space.',
     },
     Sentinel: {
       defense: 'Most of the time, set up on B and put a trip or wall Mid. You can use a Cypher camera on B Main for early information. If the enemy team does not break the camera, your team can stack more players toward A.',
