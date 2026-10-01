@@ -14,18 +14,39 @@ function loadSavedPlan() {
   const defaults = {
     selectedMap: 'Haven',
     selectedRole: null,
-    matchGoal: '',
-    personalNotes: '',
+    draftsByPlan: {},
     phase: 'Defense',
   }
 
   try {
     const saved = JSON.parse(window.localStorage.getItem(storageKey) || '{}')
+    const selectedMap = maps.includes(saved.selectedMap) ? saved.selectedMap : defaults.selectedMap
+    const selectedRole = roleOptions.some((role) => role.key === saved.selectedRole) ? saved.selectedRole : null
+    const draftsByPlan = {}
+
+    if (saved.draftsByPlan && typeof saved.draftsByPlan === 'object' && !Array.isArray(saved.draftsByPlan)) {
+      for (const [key, draft] of Object.entries(saved.draftsByPlan)) {
+        const [map, role] = key.split('::')
+        const isValidPlan = maps.includes(map) && roleOptions.some((option) => option.key === role)
+
+        if (isValidPlan && draft && typeof draft === 'object') {
+          draftsByPlan[key] = {
+            matchGoal: typeof draft.matchGoal === 'string' ? draft.matchGoal.slice(0, 90) : '',
+            personalNotes: typeof draft.personalNotes === 'string' ? draft.personalNotes.slice(0, 500) : '',
+          }
+        }
+      }
+    } else if (selectedRole && (saved.matchGoal || saved.personalNotes)) {
+      draftsByPlan[`${selectedMap}::${selectedRole}`] = {
+        matchGoal: typeof saved.matchGoal === 'string' ? saved.matchGoal.slice(0, 90) : '',
+        personalNotes: typeof saved.personalNotes === 'string' ? saved.personalNotes.slice(0, 500) : '',
+      }
+    }
+
     return {
-      selectedMap: maps.includes(saved.selectedMap) ? saved.selectedMap : defaults.selectedMap,
-      selectedRole: roleOptions.some((role) => role.key === saved.selectedRole) ? saved.selectedRole : null,
-      matchGoal: typeof saved.matchGoal === 'string' ? saved.matchGoal.slice(0, 90) : '',
-      personalNotes: typeof saved.personalNotes === 'string' ? saved.personalNotes.slice(0, 500) : '',
+      selectedMap,
+      selectedRole,
+      draftsByPlan,
       phase: phases.includes(saved.phase) ? saved.phase : defaults.phase,
     }
   } catch {
@@ -37,23 +58,38 @@ function App() {
   const [initialPlan] = useState(loadSavedPlan)
   const [selectedMap, setSelectedMap] = useState(initialPlan.selectedMap)
   const [selectedRole, setSelectedRole] = useState(initialPlan.selectedRole)
-  const [matchGoal, setMatchGoal] = useState(initialPlan.matchGoal)
-  const [personalNotes, setPersonalNotes] = useState(initialPlan.personalNotes)
+  const [draftsByPlan, setDraftsByPlan] = useState(initialPlan.draftsByPlan)
   const [phase, setPhase] = useState(initialPlan.phase)
+  const currentPlanKey = selectedRole ? `${selectedMap}::${selectedRole}` : null
+  const currentDraft = currentPlanKey
+    ? draftsByPlan[currentPlanKey] ?? { matchGoal: '', personalNotes: '' }
+    : { matchGoal: '', personalNotes: '' }
+  const roleLabel = selectedRole === 'Controller' ? 'Smokes' : selectedRole
+
+  function updateCurrentDraft(field, value) {
+    if (!currentPlanKey) return
+
+    setDraftsByPlan((previousDrafts) => ({
+      ...previousDrafts,
+      [currentPlanKey]: {
+        ...previousDrafts[currentPlanKey],
+        [field]: value,
+      },
+    }))
+  }
 
   useEffect(() => {
     try {
       window.localStorage.setItem(storageKey, JSON.stringify({
         selectedMap,
         selectedRole,
-        matchGoal,
-        personalNotes,
+        draftsByPlan,
         phase,
       }))
     } catch {
       // The planner remains usable if browser storage is unavailable.
     }
-  }, [selectedMap, selectedRole, matchGoal, personalNotes, phase])
+  }, [selectedMap, selectedRole, draftsByPlan, phase])
 
   return (
     <div className="app-shell">
@@ -104,10 +140,11 @@ function App() {
               />
             </section>
             <MatchNotes
-              matchGoal={matchGoal}
-              onGoalChange={setMatchGoal}
-              personalNotes={personalNotes}
-              onNotesChange={setPersonalNotes}
+              contextLabel={selectedRole ? `${selectedMap} · ${roleLabel}` : null}
+              matchGoal={currentDraft.matchGoal}
+              onGoalChange={(value) => updateCurrentDraft('matchGoal', value)}
+              personalNotes={currentDraft.personalNotes}
+              onNotesChange={(value) => updateCurrentDraft('personalNotes', value)}
             />
           </section>
 
@@ -116,8 +153,8 @@ function App() {
             selectedRole={selectedRole}
             phase={phase}
             onPhaseChange={setPhase}
-            matchGoal={matchGoal}
-            personalNotes={personalNotes}
+            matchGoal={currentDraft.matchGoal}
+            personalNotes={currentDraft.personalNotes}
           />
         </div>
       </main>

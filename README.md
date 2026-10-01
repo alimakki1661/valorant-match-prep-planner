@@ -9,7 +9,7 @@ Match Point is a VALORANT match prep planner built with React and Vite. Choose a
 - Read attack and defense advice for each map and role.
 - Write a match goal and personal notes in controlled inputs and see them appear in the live plan.
 - Switch the selected map or role and see the plan update immediately.
-- Automatically save the current plan in this browser and restore it after a refresh.
+- Save separate goal and note drafts for each map and role in this browser, and restore them after a refresh.
 
 The map advice is based on Ali's gameplay notes.
 

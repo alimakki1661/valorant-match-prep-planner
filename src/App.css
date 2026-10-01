@@ -54,6 +54,7 @@
 .notes-heading p { font-size: 0.68rem; }
 .note-field { display: flex; flex-direction: column; gap: 0.4rem; margin-top: 0.9rem; color: #b3bbc1; font-size: 0.68rem; font-weight: 700; }
 .note-field input, .note-field textarea { width: 100%; border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 0; padding: 0.7rem 0.75rem; background: #10171f; color: #f3f2ef; font-size: 0.75rem; font-weight: 400; line-height: 1.5; resize: vertical; }
+.note-field input:disabled, .note-field textarea:disabled { cursor: not-allowed; opacity: 0.55; }
 .note-field input::placeholder, .note-field textarea::placeholder { color: #78848d; }
 .note-field input:focus-visible, .note-field textarea:focus-visible { outline: 2px solid #ff6470; outline-offset: 2px; border-color: transparent; }
 .character-count { align-self: flex-end; color: #77828b; font-size: 0.58rem; font-weight: 500; }
