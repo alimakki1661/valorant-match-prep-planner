@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { roleOptions } from './data/roles.js'
 import { MapSelector } from './components/MapSelector.jsx'
 import { MatchPlan } from './components/MatchPlan.jsx'
@@ -7,12 +7,53 @@ import { RoleSelector } from './components/RoleSelector.jsx'
 import './App.css'
 
 const maps = ['Haven', 'Ascent', 'Sunset']
+const phases = ['Defense', 'Attack']
+const storageKey = 'match-point-plan'
+
+function loadSavedPlan() {
+  const defaults = {
+    selectedMap: 'Haven',
+    selectedRole: null,
+    matchGoal: '',
+    personalNotes: '',
+    phase: 'Defense',
+  }
+
+  try {
+    const saved = JSON.parse(window.localStorage.getItem(storageKey) || '{}')
+    return {
+      selectedMap: maps.includes(saved.selectedMap) ? saved.selectedMap : defaults.selectedMap,
+      selectedRole: roleOptions.some((role) => role.key === saved.selectedRole) ? saved.selectedRole : null,
+      matchGoal: typeof saved.matchGoal === 'string' ? saved.matchGoal.slice(0, 90) : '',
+      personalNotes: typeof saved.personalNotes === 'string' ? saved.personalNotes.slice(0, 500) : '',
+      phase: phases.includes(saved.phase) ? saved.phase : defaults.phase,
+    }
+  } catch {
+    return defaults
+  }
+}
 
 function App() {
-  const [selectedMap, setSelectedMap] = useState('Haven')
-  const [selectedRole, setSelectedRole] = useState(null)
-  const [matchGoal, setMatchGoal] = useState('')
-  const [personalNotes, setPersonalNotes] = useState('')
+  const [initialPlan] = useState(loadSavedPlan)
+  const [selectedMap, setSelectedMap] = useState(initialPlan.selectedMap)
+  const [selectedRole, setSelectedRole] = useState(initialPlan.selectedRole)
+  const [matchGoal, setMatchGoal] = useState(initialPlan.matchGoal)
+  const [personalNotes, setPersonalNotes] = useState(initialPlan.personalNotes)
+  const [phase, setPhase] = useState(initialPlan.phase)
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(storageKey, JSON.stringify({
+        selectedMap,
+        selectedRole,
+        matchGoal,
+        personalNotes,
+        phase,
+      }))
+    } catch {
+      // The planner remains usable if browser storage is unavailable.
+    }
+  }, [selectedMap, selectedRole, matchGoal, personalNotes, phase])
 
   return (
     <div className="app-shell">
@@ -73,6 +114,8 @@ function App() {
           <MatchPlan
             selectedMap={selectedMap}
             selectedRole={selectedRole}
+            phase={phase}
+            onPhaseChange={setPhase}
             matchGoal={matchGoal}
             personalNotes={personalNotes}
           />

@@ -5,7 +5,7 @@ export function MatchNotes({ matchGoal, onGoalChange, personalNotes, onNotesChan
         <span className="step-number">03</span>
         <div>
           <h2 id="notes-title">Make it your plan</h2>
-          <p>Your goal and notes appear in the plan as you type.</p>
+          <p>Your goal and notes appear in the plan as you type and save in this browser.</p>
         </div>
       </div>
 

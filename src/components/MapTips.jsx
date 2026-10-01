@@ -1,10 +1,8 @@
-import { useState } from 'react'
 import { mapTips } from '../data/mapTips.js'
 
 const phases = ['Defense', 'Attack']
 
-export function MapTips({ selectedMap, selectedRole }) {
-  const [phase, setPhase] = useState('Defense')
+export function MapTips({ selectedMap, selectedRole, phase, onPhaseChange }) {
   const roleTips = mapTips[selectedMap]?.[selectedRole]
   const roleLabel = selectedRole === 'Controller' ? 'Smokes' : selectedRole
 
@@ -22,7 +20,7 @@ export function MapTips({ selectedMap, selectedRole }) {
               type="button"
               className={phase === item ? 'is-active' : ''}
               aria-pressed={phase === item}
-              onClick={() => setPhase(item)}
+              onClick={() => onPhaseChange(item)}
             >
               {item}
             </button>
