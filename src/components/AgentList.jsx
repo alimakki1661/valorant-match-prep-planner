@@ -10,7 +10,7 @@ export function AgentList({ agents, selectedAgent, onSelectAgent }) {
   }
 
   return (
-    <div className="agent-list" aria-label="Agents">
+    <div className="agent-list" role="group" aria-label="Agents">
       {agents.map((agent) => (
         <AgentCard
           agent={agent}

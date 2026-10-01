@@ -1,6 +1,17 @@
 # Match Point
 
-A personal VALORANT match prep planner built with React and Vite. Choose a map, pick any agent, and put together a plan using map and role tips written from your own game knowledge.
+Match Point is a VALORANT match prep planner built with React and Vite. Choose a map and any agent, then review role-specific advice and write a goal and personal notes for the match.
+
+## Features
+
+- Choose Haven, Ascent, or Sunset.
+- Pick any of eight agents on any map.
+- Search agents by name or filter by role.
+- Read attack and defense advice for each map and role.
+- Write a match goal and personal notes in controlled inputs.
+- Switch selections and see the plan update immediately.
+
+The map advice is based on Ali's gameplay notes.
 
 ## Run locally
 
@@ -9,25 +20,24 @@ npm install
 npm run dev
 ```
 
-## Build for production
+## Check the project
 
 ```bash
+npm run lint
 npm run build
 ```
 
-The production build is written to `dist`, which is the publish directory for Netlify.
+The production build is written to `dist`.
 
-## Project plan
+## Deploy to Netlify
 
-Current features:
+The repository includes these settings in `netlify.toml`:
 
-- Select Haven, Ascent, or Sunset and see the map update in the live plan.
-- Browse eight agents across all four roles. Agent picks are not restricted by map.
-- Search agents by name and filter the list by role.
-- Select an agent and see that choice in the live plan.
-- Read your map and role advice for attack or defense.
-- Write a match goal and personal notes in controlled inputs.
+- Build command: `npm run build`
+- Publish directory: `dist`
 
-Next, the planner will get its final accessibility, responsive-layout, and deployment review.
+## Project structure
 
-The planner is being built in stages so each part can be understood and reviewed before the next is added.
+- `src/components/` contains the map selector, agent browser, tips, plan, and notes components.
+- `src/data/agents.js` contains the agent list and roles.
+- `src/data/mapTips.js` contains map and role advice.

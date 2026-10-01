@@ -2,7 +2,7 @@ import { roles } from '../data/agents.js'
 
 export function RoleFilter({ selectedRole, onRoleChange }) {
   return (
-    <div className="role-filters" aria-label="Filter agents by role">
+    <div className="role-filters" role="group" aria-label="Filter agents by role">
       {roles.map((role) => (
         <button
           className={`role-filter ${selectedRole === role ? 'is-active' : ''}`}

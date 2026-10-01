@@ -1,6 +1,6 @@
 export function MapSelector({ maps, selectedMap, onSelectMap }) {
   return (
-    <div className="map-list" aria-label="Choose a map">
+    <div className="map-list" role="group" aria-label="Choose a map">
       {maps.map((map) => (
         <button
           className={`map-option ${selectedMap === map ? 'is-selected' : ''}`}

@@ -15,7 +15,7 @@ export function MapTips({ selectedMap, selectedAgent }) {
           <p className="eyebrow">ALI'S MAP NOTES</p>
           <h3 id="tips-title">{selectedMap} · {roleLabel}</h3>
         </div>
-        <div className="phase-switch" aria-label="Choose attack or defense advice">
+        <div className="phase-switch" role="group" aria-label="Choose attack or defense advice">
           {phases.map((item) => (
             <button
               key={item}
