@@ -9,6 +9,7 @@ import './App.css'
 
 const maps = ['Haven', 'Ascent', 'Sunset']
 const storageKey = 'match-point-plan'
+const emptyDraft = { matchGoal: '', personalNotes: '' }
 
 function loadSavedPlan() {
   const defaults = {
@@ -57,8 +58,8 @@ function App() {
   const [phase, setPhase] = useState(initialPlan.phase)
   const currentPlanKey = selectedRole ? `${selectedMap}::${selectedRole}` : null
   const currentDraft = currentPlanKey
-    ? draftsByPlan[currentPlanKey] ?? { matchGoal: '', personalNotes: '' }
-    : { matchGoal: '', personalNotes: '' }
+    ? { ...emptyDraft, ...draftsByPlan[currentPlanKey] }
+    : emptyDraft
   const roleLabel = roleOptions.find((role) => role.key === selectedRole)?.label
 
   function updateCurrentDraft(field, value) {
@@ -67,6 +68,7 @@ function App() {
     setDraftsByPlan((previousDrafts) => ({
       ...previousDrafts,
       [currentPlanKey]: {
+        ...emptyDraft,
         ...previousDrafts[currentPlanKey],
         [field]: value,
       },
