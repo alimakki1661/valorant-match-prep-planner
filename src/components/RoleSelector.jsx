@@ -9,7 +9,17 @@ export function RoleSelector({ roles, selectedRole, onSelectRole }) {
           aria-pressed={selectedRole === role.key}
           onClick={() => onSelectRole(role.key)}
         >
-          {role.label}
+          <span className="role-option-copy">
+            <span className="role-option-label">{role.label}</span>
+            <span className="role-option-agents">
+              Examples: {role.agents.map((agent) => agent.name).join(' · ')}
+            </span>
+          </span>
+          <span className="role-option-portraits" aria-hidden="true">
+            {role.agents.map((agent) => (
+              <img className="role-agent-image" key={agent.name} src={agent.image} alt="" />
+            ))}
+          </span>
         </button>
       ))}
     </div>
